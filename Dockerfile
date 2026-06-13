@@ -2,7 +2,7 @@ FROM ubuntu
 
 ENV DEV false
 
-RUN apt-get update && apt-get install -y ucspi-tcp jq
+RUN apt-get update && apt-get install -y ucspi-tcp jq curl
 
 EXPOSE 3000
 
