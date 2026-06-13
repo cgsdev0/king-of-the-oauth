@@ -50,6 +50,7 @@ if [[ "$CUR_ID" != "$ID" ]]; then
     # update score of CUR_ID
     DELTA=$((NOW - OLD_TIME))
     OLD_SCORE=$(grep "^$ID " data/scores | cut -d' ' -f2)
+    OLD_SCORE=${OLD_SCORE:-0}
     sed -i "/^$ID /d" data/scores
     NEW_SCORE=$((OLD_SCORE + DELTA))
     echo "$ID $NEW_SCORE" >> data/scores

@@ -3,6 +3,12 @@
   "services": {
     "web": {
       "port": 3000
-    }
+    },
+    "volumes": [
+      {
+        "name": "database",
+        "destinationPath": "/app/data"
+      }
+    ]
   }
 }
