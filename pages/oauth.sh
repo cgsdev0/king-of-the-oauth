@@ -1,3 +1,4 @@
+# headers
 
 source config.sh
 
@@ -6,8 +7,12 @@ ACCESS_TOKEN=$(curl -Ss -X POST \
  | jq -r '.access_token')
 
 if [[ "$ACCESS_TOKEN" == null ]]; then
+  end_headers
   return $(status_code 401)
 fi
+
+header Location /
+end_headers
 
 DATA=$(curl -Ss "$RECURSE_BASE_URL/api/v1/profiles/me" \
   --header "Authorization: Bearer $ACCESS_TOKEN")
@@ -16,12 +21,12 @@ NAME=$(echo "$DATA" | jq -r '.name')
 IMAGE=$(echo "$DATA" | jq -r '.image_path')
 ID=$(echo "$DATA" | jq -r '.id')
 
-echo "<pre>"
-echo "$NAME"
-echo "$IMAGE"
-echo "$ID"
-echo "</pre>"
-echo "<img src=\"$IMAGE\" />"
+# echo "<pre>"
+# echo "$NAME"
+# echo "$IMAGE"
+# echo "$ID"
+# echo "</pre>"
+# echo "<img src=\"$IMAGE\" />"
 
 touch data/names
 touch data/scores
@@ -50,3 +55,5 @@ if [[ "$CUR_ID" != "$ID" ]]; then
 
   echo "$ID $NOW" > data/current
 fi
+
+return $(status_code 302)
