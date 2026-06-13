@@ -44,4 +44,20 @@ htmx_page << EOF
   <h2>leaderboard</h2>
   <pre>$(returnLeaderboard)</pre>
   <a href="${RECURSE_BASE_URL}/oauth/authorize?client_id=${APP_ID}&redirect_uri=${REDIRECT_URI}&response_type=code">Capture Now!</a>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <a href="https://github.com/cgsdev0/king-of-the-oauth/">Source Code</a>
 EOF
