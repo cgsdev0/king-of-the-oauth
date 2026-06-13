@@ -8,10 +8,12 @@ ACCESS_TOKEN=$(curl -Ss -X POST \
 
 if [[ "$ACCESS_TOKEN" == null ]]; then
   end_headers
+  end_headers
   return $(status_code 401)
 fi
 
 header Location /
+end_headers
 end_headers
 
 DATA=$(curl -Ss "$RECURSE_BASE_URL/api/v1/profiles/me" \
