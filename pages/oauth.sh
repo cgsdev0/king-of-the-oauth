@@ -45,15 +45,27 @@ NOW=$(date "+%s")
 read CUR_ID OLD_TIME < data/current
 OLD_TIME="${OLD_TIME:-$NOW}"
 
+if [[ "$CUR_ID" == "$ID" ]]; then
+  if [[ -n "$CUR_ID" ]]; then
+    # penalty
+    DELTA=10
+    OLD_SCORE=$(grep "^$ID " data/scores | cut -d' ' -f2)
+    OLD_SCORE=${OLD_SCORE:-0}
+    sed -i "/^$ID /d" data/scores
+    NEW_SCORE=$((OLD_SCORE - DELTA))
+    echo "$ID $NEW_SCORE" >> data/scores
+  fi
+fi
+
 if [[ "$CUR_ID" != "$ID" ]]; then
   if [[ -n "$CUR_ID" ]]; then
     # update score of CUR_ID
     DELTA=$((NOW - OLD_TIME))
-    OLD_SCORE=$(grep "^$ID " data/scores | cut -d' ' -f2)
+    OLD_SCORE=$(grep "^$CUR_ID " data/scores | cut -d' ' -f2)
     OLD_SCORE=${OLD_SCORE:-0}
-    sed -i "/^$ID /d" data/scores
+    sed -i "/^$CUR_ID /d" data/scores
     NEW_SCORE=$((OLD_SCORE + DELTA))
-    echo "$ID $NEW_SCORE" >> data/scores
+    echo "$CUR_ID $NEW_SCORE" >> data/scores
   fi
 
   echo "$ID $NOW" > data/current
