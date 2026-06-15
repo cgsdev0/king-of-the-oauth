@@ -46,7 +46,7 @@ function publish() {
 heartbeat() {
   while true; do
     printf ": \n\n" | publish leaderboard
-    sleep 30
+    sleep 20
   done
 }
 
