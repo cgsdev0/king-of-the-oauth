@@ -26,6 +26,32 @@ PORT=${PORT:-3000}
 
 TCP_PROVIDER=${TCP_PROVIDER:-tcpserver}
 
+function publish() {
+  local TOPIC
+  local line
+  TOPIC="$1"
+  if [[ -z "$TOPIC" ]]; then
+    return
+  fi
+  if [[ ! -d "pubsub/${TOPIC}" ]]; then
+    return
+  fi
+  TEE_ARGS=$(find pubsub/"${TOPIC}" -type p)
+  if [[ -z "$TEE_ARGS" ]]; then
+    return
+  fi
+  tee $TEE_ARGS > /dev/null
+}
+
+heartbeat() {
+  while true; do
+    printf ": \n\n" | publish leaderboard
+    sleep 30
+  done
+}
+
+heartbeat &
+
 case "$TCP_PROVIDER" in
   tcpserver)
     echo -n "Listening on port "
