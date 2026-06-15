@@ -35,6 +35,10 @@ touch data/scores
 touch data/images
 touch data/current
 
+leader() {
+  echo "<img src=\"$1\"/><p>$2 is currently king-of-the-oauth.</p>"
+}
+
 sed -i "/^$ID /d" data/names
 sed -i "/^$ID /d" data/images
 echo "$ID $NAME" >> data/names
@@ -66,6 +70,7 @@ if [[ "$CUR_ID" != "$ID" ]]; then
     sed -i "/^$CUR_ID /d" data/scores
     NEW_SCORE=$((OLD_SCORE + DELTA))
     echo "$CUR_ID $NEW_SCORE" >> data/scores
+    event leader "$(leader "$IMAGE" "$NAME")" | publish leaderboard
   fi
 
   echo "$ID $NOW" > data/current

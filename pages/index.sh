@@ -39,8 +39,10 @@ function returnLeaderboard {
 
 htmx_page << EOF
   <h1>${PROJECT_NAME}</h1>
+  <div hx-ext="sse" sse-connect="/sse" sse-swap="leader">
   <img src="${images[$CUR_ID]}"/>
   <p>${names[$CUR_ID]} is currently king-of-the-oauth.</p>
+  </div>
   <h2>leaderboard</h2>
   <pre>$(returnLeaderboard)</pre>
   <a href="${RECURSE_BASE_URL}/oauth/authorize?client_id=${APP_ID}&redirect_uri=${REDIRECT_URI}&response_type=code">Capture Now!</a>

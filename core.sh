@@ -133,11 +133,10 @@ function htmx_page() {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="UTF-8">
   ${STYLE_TEXT}
-  <script src="https://unpkg.com/htmx.org@1.9.3/dist/htmx.min.js" integrity="sha384-lVb3Rd/Ca0AxaoZg5sACe8FJKF0tnUgR2Kd7ehUOG5GCcROv5uBIZsOqovBAcWua" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/hyperscript.org@0.9.8"></script>
-  <script src="https://unpkg.com/htmx.org/dist/ext/sse.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js" integrity="sha384-H5SrcfygHmAuTDZphMHqBJLc3FhssKjG7w/CeCpFReSfwBWDTKpkzPP8c+cLsK+V" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/htmx-ext-sse@2.2.4" integrity="sha384-A986SAtodyH8eg8x8irJnYUk7i9inVQqYigD6qZ9evobksGNIXfeFvDwLSHcp31N" crossorigin="anonymous"></script>
   </head>
-  <body>
+  <body hx-ext="sse">
   $(_inject_hmr)
 EOF
 
