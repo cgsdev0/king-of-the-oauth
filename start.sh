@@ -2,6 +2,9 @@
 
 cd "${0%/*}"
 
+sed -i '/^ *$/d' data/images
+sed -i '/^ *$/d' data/names
+
 [[ -f 'config.sh' ]] && source config.sh
 
 if [[ "${DEV:-true}" == "true" ]] && [[ ! -z "$TAILWIND" ]]; then
