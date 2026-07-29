@@ -4,6 +4,7 @@ cd "${0%/*}"
 
 sed -i '/^ *$/d' data/images
 sed -i '/^ *$/d' data/names
+sed -i '/^ *$/d' data/scores
 
 [[ -f 'config.sh' ]] && source config.sh
 
